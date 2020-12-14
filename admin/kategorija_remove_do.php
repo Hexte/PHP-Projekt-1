@@ -8,17 +8,17 @@ adminOnly();
 
 $safePost = filter_input_array(INPUT_POST);
 
-$query="SELECT * FROM oddelki WHERE id_o=?";
+$query="SELECT * FROM oddleki WHERE id_o=?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$safePost['oddelek']]);
 $row = $stmt->fetch();
 
 if ($safePost['option'] == 1){
-    $query2="UPDATE oddelki SET nadoddelek_id=NULL WHERE nadoddelek_id=" . $row['id_o'];
+    $query2="UPDATE oddleki SET nadoddelek_id=NULL WHERE nadoddelek_id=" . $row['id_o'];
     $stmt2 = $pdo->prepare($query2);
     $stmt2->execute();
     
-    $query3 = "DELETE FROM oddelki WHERE id_o=". $row['id_o'];
+    $query3 = "DELETE FROM oddleki WHERE id_o=". $row['id_o'];
     $stmt3 = $pdo->prepare($query3);
     $stmt3->execute();
     header("Location: index.php");
@@ -26,11 +26,11 @@ if ($safePost['option'] == 1){
     
 }
 else if ($safePost['option'] == 2) {
-    $query2="UPDATE oddelki SET nadoddelek_id=" . $row['nadoddelek_id'] ." WHERE nadoddelek_id=" . $row['id_o'];
+    $query2="UPDATE oddleki SET nadoddelek_id=" . $row['nadoddelek_id'] ." WHERE nadoddelek_id=" . $row['id_o'];
     $stmt2 = $pdo->prepare($query2);
     $stmt2->execute();
     
-    $query3 = "DELETE FROM oddelki WHERE id_o=". $row['id_o'];
+    $query3 = "DELETE FROM oddleki WHERE id_o=". $row['id_o'];
     $stmt3 = $pdo->prepare($query3);
     $stmt3->execute();
 //    echo $query2;

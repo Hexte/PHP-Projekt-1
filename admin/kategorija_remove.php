@@ -16,7 +16,7 @@ adminOnly();
             
             <select name="oddelek" id="oddelek">
                 <?php
-                $query="SELECT ime, nadoddelek_id, id_o FROM oddelki WHERE glavna IS NULL ORDER BY nadoddelek_id";
+                $query="SELECT ime, nadoddelek_id, id_o FROM oddleki WHERE glavna IS NULL ORDER BY nadoddelek_id";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 

@@ -1,15 +1,12 @@
 <?php 
 session_start();
-$safeGET = filter_input_array(INPUT_GET);
-$ime = $safeGET['ime'];
-?>
 
+$query = "SELECT * FROM izdelki_kosarice WHERE id_k=" . $_SESSION['kosarica'];
+echo $query;
+
+?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -20,36 +17,13 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+        <style>
+            
+        </style>
     </head>
     <body>
-        <?php
-        include 'header.php';
-        ?>
-        <ul>
-        <?php
-
-        include_once 'database.php';
-        if (isset($ime)){
-            $query = "SELECT * FROM oddleki WHERE nadoddelek_id=(SELECT id_o FROM oddleki WHERE ime LIKE '" . $ime . "')";
-            
-                $stmt = $pdo->prepare($query);
-                $stmt->execute();
-
-                while ($row = $stmt->fetch()) {
-                    echo '<li><a href="kategorija.php?ime=' . $row['ime'] . '">' . $row['ime'] . '</a></li>';
-
-        }}
-        else {
-            $query = "SELECT * FROM oddleki WHERE glavna=1";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute();
-    
-    while ($row = $stmt->fetch()) {
-        echo '<li><a href="kategorija.php?ime=' . $row['ime'] . '">' . $row['ime'] . '</a></li>';
+        <?php include 'header.php';?>
         
-    }
-        }
-    ?>
-            </ul>
     </body>
+    
 </html>

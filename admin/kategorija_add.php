@@ -17,7 +17,7 @@ adminOnly();
             <input type="text" name="ime" id="ime" required="">
             <select name="nadoddelek" id="nadoddelek">
                 <?php
-                $query="SELECT ime, nadoddelek_id, id_o FROM oddelki ORDER BY nadoddelek_id";
+                $query="SELECT ime, nadoddelek_id, id_o FROM oddleki ORDER BY nadoddelek_id";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 

@@ -12,7 +12,7 @@ $pass1 = $safePost['passInput'];
 $pass2 = $safePost['passConfirm'];
 
 
-echo $ime;
+//echo $ime;
 
 $queryCheck = "SELECT email FROM uporabniki WHERE email LIKE ?";
 $stmtCheck = $pdo->prepare($queryCheck);
@@ -31,7 +31,21 @@ if($stmtCheck->rowCount() == 0){
                 . "VALUES (?,?,?,?)";
         $stmt = $pdo->prepare($query);
         $stmt->execute([$ime,$priimek,$email,$pass]);
-
+        
+        $queryKos = "SELECT * FROM uporabniki WHERE email LIKE ?";
+        $stmtKos = $pdo->prepare($queryKos);
+        $stmtKos->execute([$email]);
+        
+        $row = $stmtKos->fetch();
+        
+        $user_id = $row['id_u'];
+        echo $user_id;
+        $makeActive = 1;
+        
+        $queryKosCreate = "INSERT INTO kosarice (uporabnik_id,active) VALUES (?,?)";
+        $stmtKosCreate = $pdo->prepare($queryKosCreate);
+        $stmtKosCreate->execute([$user_id,$makeActive]);
+        
         header("Location: login.php");
     }
     else {

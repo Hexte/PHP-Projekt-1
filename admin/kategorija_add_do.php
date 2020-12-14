@@ -44,7 +44,7 @@ if ($uploadOk == 0) {
 
 
 else {
-    $query = "INSERT INTO oddelki (id_o, ime, nadoddelek_id, slika_url) VALUES (NULL, '" . $safePost['ime'] . "', " . $safePost['nadoddelek'] . ", '" . basename($file) . "')";
+    $query = "INSERT INTO oddleki (id_o, ime, nadoddelek_id, slika_url) VALUES (NULL, '" . $safePost['ime'] . "', " . $safePost['nadoddelek'] . ", '" . basename($file) . "')";
     echo $query;
     $stmt = $pdo->prepare($query);
     $stmt->execute();

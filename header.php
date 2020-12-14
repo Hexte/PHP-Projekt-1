@@ -4,7 +4,7 @@ echo '
         <div>
             <div class="header">
                 <div class="logo" style="height: 2em; line-height: 2em; width:20%; float: left;">
-                    <h2 style="font-weight: bold; text-align: center; height: 2em; line-height: 2em;">
+                    <h2 style="font-weight: bold; text-align: center; height: 2em; line-height: 2em; margin:0;">
                         VVRSTI
                     </h2>
                 </div>
@@ -14,18 +14,18 @@ echo '
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
-                <div class="personal" style="height: 4em; line-height: 4em; width:20%; float: right;">
-                    <div class="user" style="height: 4em; line-height: 4em; width:50%; float: right;">';
+                <div class="personal" style="height: 4em; line-height: 4em; width:15%; float: right; margin-right: 4.75em;">
+                    <div class="user" style="height: 4em; line-height: 4em; width:50%; float: right; text-align:center">';
                         if (isset($_SESSION['user_id'])){
-                            echo 'is';
+                            echo '<a href="#">Košarica</a>';
                         }
                         else {
                             echo '<a href="login.php" style="color: white; text-decoration:none;"><button type="button" class="btn btn-primary">Prijava</button></a>';
                         } 
                    echo '</div>
-                    <div class="basket" style="height: 4em; line-height: 4em; width:50%; float: right;">';
+                    <div class="basket" style="height: 4em; line-height: 4em; width:50%; float: right; text-align:center">';
                         if (isset($_SESSION['user_id'])){
-                            echo 'is';
+                            echo '<a href="#">Profil</a>';
                         }
                         else {
                             echo '<a href="reg.php" style="color: white; text-decoration:none;"><button type="button" class="btn btn-primary">Registracija</button></a>';

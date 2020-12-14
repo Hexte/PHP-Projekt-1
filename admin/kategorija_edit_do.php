@@ -51,7 +51,7 @@ if(isset($safePost['slika'])){
 
 
     else {
-        $query = "UPDATE oddelki SET ime=?, nadoddelek_id=?, slika_url='" . basename($file) . "' WHERE id_o=?";
+        $query = "UPDATE oddleki SET ime=?, nadoddelek_id=?, slika_url='" . basename($file) . "' WHERE id_o=?";
 //        echo $query;
         $stmt = $pdo->prepare($query);
         $stmt->execute([$ime, $nadoddelek_id, $id]);
@@ -68,7 +68,7 @@ if(isset($safePost['slika'])){
     }
 }
 
-    $query2 = "UPDATE oddelki SET ime='" . $ime . "', nadoddelek_id=" . $nadoddelek_id . " WHERE id_o=" . $id;
+    $query2 = "UPDATE oddleki SET ime='" . $ime . "', nadoddelek_id=" . $nadoddelek_id . " WHERE id_o=" . $id;
     echo $query2;
         $stmt2 = $pdo->prepare($query2);
         $stmt2->execute();

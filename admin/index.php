@@ -23,7 +23,7 @@ adminOnly();
         <form method="POST" action="kategorija_edit.php">
             <select name="kat" id="kat">
                 <?php
-                $query="SELECT ime, nadoddelek_id, id_o FROM oddelki ORDER BY nadoddelek_id";
+                $query="SELECT ime, nadoddelek_id, id_o FROM oddleki ORDER BY nadoddelek_id";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 
