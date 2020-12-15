@@ -25,7 +25,7 @@ echo '
                    echo '</div>
                     <div class="basket" style="height: 4em; line-height: 4em; width:50%; float: right; text-align:center">';
                         if (isset($_SESSION['user_id'])){
-                            echo '<a href="profile">Profil</a>';
+                            echo '<a href="/profile/index.php?id=' . $_SESSION['user_id'] . '">Profil</a>';
                         }
                         else {
                             echo '<a href="reg.php" style="color: white; text-decoration:none;"><button type="button" class="btn btn-primary">Registracija</button></a>';

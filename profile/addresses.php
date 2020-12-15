@@ -13,7 +13,7 @@ else {
     $stmt->execute([$id]);
     $row = $stmt->fetch();
 }
-        
+$i=1;
         ?>
 <!DOCTYPE html>
 <!--
@@ -40,22 +40,36 @@ and open the template in the editor.
         <br>
         <div class="container-lg">
             <h1>
-                Profil
+                Naslovi
             </h1><br>
             
-                <h3>
-                    Pozdravljeni, <?php echo $row['ime'] . " " . $row['priimek']; ?>
-                </h3>
-            <br>
-            <a href="orders.php?id=<?php echo $id;?>">
-                Zgodovina nakupov
-            </a><br>
-            <a href="addresses.php?id=<?php echo $id;?>">
-                Naslovi
-            </a><br>
-            <a href="settings.php?id=<?php echo $id;?>">
-                Nastavitve
-            </a><br>
+            
+                <?php
+                $queryA = "SELECT * FROM naslovi WHERE uporabnik_id=" . $id;
+                $stmtA = $pdo->prepare($queryA);
+                $stmtA->execute();
+                while ($rowA=$stmtA->fetch()){
+                    $queryK = "SELECT * FROM kraji WHERE id_k=" . $rowA['kraj_id'];
+                    $stmtK = $pdo->prepare($queryK);
+                    $stmtK->execute();
+                    $rowK=$stmtK->fetch();
+                    echo '
+                        <a href="editAddress.php?id=' . $id . '&address=' . $rowA['id'] . '"><div style="margin: 10px; float: left">
+                        Naslov #' . $i . '<br>
+                        ' . $rowA['naslov'] . '<br>
+                        ' . $rowK['post_st'] . ' ' . $rowK['kraj'] . '
+                        </div></a>
+                        ';
+                    $i++;
+                }
+                
+                
+                ?>
+            
+            
+            <a href="newAddress.php?id=<?php echo $id; ?>">
+            + Nov naslov
+            </a>
         </div>
     </body>
     

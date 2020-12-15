@@ -1,5 +1,18 @@
 <?php 
 session_start();
+include_once '../database.php';
+$safeGET= filter_input_array(INPUT_GET);
+$id = $safeGET['id'];
+
+if($id!=$_SESSION['user_id']) {
+    header("Location: ../");
+}
+else {
+    $query = "SELECT * FROM kosarice WHERE uporabnik_id=" . $id . " AND active=0";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -25,7 +38,15 @@ and open the template in the editor.
         <?php include './header.php';?>
         <br>
         <div class="container-lg">
-            
+            <?php
+            while ($row = $stmt->fetch()){
+                echo '
+                    <a href="order.php?id=' . $id . '&order=' . $row['id_k'] . '">
+                        Naročilo #' . $row['id_k'] . '
+                    </a><br>
+                    ';
+            }
+            ?>
         </div>
     </body>
     
