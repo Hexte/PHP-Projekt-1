@@ -17,7 +17,7 @@ echo '
                 <div class="personal" style="height: 4em; line-height: 4em; width:15%; float: right; margin-right: 4.75em;">
                     <div class="user" style="height: 4em; line-height: 4em; width:50%; float: right; text-align:center">';
                         if (isset($_SESSION['user_id'])){
-                            echo '<a href="kosarica.php">Košarica</a>';
+                            echo '<a href="../kosarica.php">Košarica</a>';
                         }
                         else {
                             echo '<a href="login.php" style="color: white; text-decoration:none;"><button type="button" class="btn btn-primary">Prijava</button></a>';
@@ -25,7 +25,7 @@ echo '
                    echo '</div>
                     <div class="basket" style="height: 4em; line-height: 4em; width:50%; float: right; text-align:center">';
                         if (isset($_SESSION['user_id'])){
-                            echo '<a href="profile">Profil</a>';
+                            echo '<a href="">Profil</a>';
                         }
                         else {
                             echo '<a href="reg.php" style="color: white; text-decoration:none;"><button type="button" class="btn btn-primary">Registracija</button></a>';

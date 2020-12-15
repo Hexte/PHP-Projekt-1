@@ -2,7 +2,7 @@
 
 include_once 'database.php';
 
-$query = "SELECT * FROM oddleki WHERE glavna=1";
+    $query = "SELECT * FROM oddleki WHERE glavna=1";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     

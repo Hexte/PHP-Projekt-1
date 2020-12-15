@@ -59,9 +59,39 @@ include_once 'database.php';
             <div class="cena">
                 <?php echo $rowI['cena'] . "€"; ?>
             </div>
-            <div class="cart">
-                <a href="addToCart.php?id=<?php echo $rowI['id_i'] ?>">Dodaj v košarico</a>
+            <div class="zaloga">
+                <?php 
+                    if ($rowI['zaloga'] > 5){
+                        echo '<p style="color:#00ff33">Na zalogi je >5 kosov.</p>';
+                    }
+                    elseif ($rowI['zaloga'] < 6 && $rowI['zaloga'] > 0){
+                        echo '<p style="color:#00ff33">Na zalogi je <5 kosov.</p>';
+                    }
+                    elseif ($rowI['zaloga'] == 0){
+                        echo '<p style="color:red">Ni na zalogi</p>';
+                    }
+                
+                
+                    
+                ?>
+                
             </div>
+            <?php 
+            if($rowI['zaloga'] == 0){
+                echo '
+                    <div class="cart">
+                        Dodaj v košarico
+                    </div>
+                    ';
+            }
+            else {
+                echo '
+                    <div class="cart">
+                        <a href="addToCart.php?id=' . $rowI['id_i'] . '">Dodaj v košarico</a>
+                    </div>
+                    ';
+            }
+            ?>
         </div>
 
     </body>
