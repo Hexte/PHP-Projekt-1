@@ -56,6 +56,10 @@ and open the template in the editor.
             <a href="settings.php?id=<?php echo $id;?>">
                 Nastavitve
             </a><br>
+            <a href="../logout.php">
+                Izpis
+            </a>
+
         </div>
     </body>
     

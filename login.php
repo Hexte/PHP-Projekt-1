@@ -1,3 +1,10 @@
+<?php
+include 'session.php';
+if(isset($_SESSION['user_id'])){
+    header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -8,8 +15,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Prijava</title>
-        <meta charset="UTF-8">
-        <title>Bolha klon</title>
+        <meta name="google-signin-client_id" content="686963027894-p7oee249bp8ufsiljptb78jvu5tdb3is.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -65,13 +72,35 @@ and open the template in the editor.
                       <label class="form-check-label" for="Check">Ostanite prijavljeni</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Prijava</button>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <button class="btn btn-link" style="float:right;">
                         <p id="regBtn" onclick="toReg()" style="color:#007bff; margin: 0; text-decoration: none;">Registracija</p>
                     </button>
+                    
                 </form>
                 
             </div>
+             
+
         </div>
+        <form style="display: none;" method="POST" action="login_google.php" id="googleForm" name="googleForm">
+            <input type="email" name="emailInputGoogle" id="emailInputGoogle">
+        </form>
+        <script>
+                function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                  
+                    document.getElementById("emailInputGoogle").value = profile.getEmail();
+                    //alert(document.getElementById("emailInputGoogle").value);
+                    document.googleForm.submit();
+                
+                }
+                
+
+            </script>
+
+        
+        
         
         <script>
                 $("#formDiv").fadeIn(500, "swing");
